@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   spark-master:
     build:
@@ -17,7 +15,8 @@ services:
     networks:
       - code-with-yu
 
-  spark-worker: &worker
+  spark-worker:
+    &worker
     build:
       context: .
       dockerfile: Dockerfile.spark
