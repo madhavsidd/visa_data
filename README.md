@@ -8,8 +8,6 @@ This project contains a comprehensive solution for analyzing and visualizing vis
 - [Setup Guide](docs/setup.md)
 - [How to Run](docs/run.md)
 - [Features & Capabilities](docs/features.md)
-- [Additional Notes](docs/notes.md)
-- [Demo Video](docs/demo.md)
 
 # Architecture
 
@@ -78,4 +76,12 @@ spark-submit --master spark://<spark-master-url>:7077 jobs/visualisation.py
 # Additional Notes
 
 - **Configuration**: Ensure that GCP and Docker are properly configured for seamless integration with Spark.
+
+## Inspiration
+
+This project was inspired by the YouTube video:
+
+[**Japan Visa Analysis: Azure End to End Data Engineering**](https://www.youtube.com/watch?v=f-IcM8mFmDc)
+
+The video provided valuable insights and guidance for setting up the end-to-end data engineering pipeline. The original project used Azure, and this version has been adapted to use Google Cloud Platform (GCP).
 
