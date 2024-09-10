@@ -83,7 +83,7 @@ continent_udf = udf(get_continent_name, StringType())
 df = df.withColumn('continent', continent_udf(df['country']))
 
 df.createGlobalTempView('japan_visa')
-
+'''
 # VISUALISATION
 df_cont = spark.sql("""
     SELECT year, continent, sum(number_of_issued_numerical) visa_issued
@@ -102,9 +102,29 @@ fig.update_layout(title_text="Top 10 countries with most issued visa in 2017",
                   legend_title='Country')
 
 fig.write_html('output/visa_number_in_japan_by_country_2017.html')
+'''
+df_country_year_map = spark.sql("""
+    SELECT year, country, sum(number_of_issued_numerical) visa_issued
+    FROM global_temp.japan_visa
+    WHERE country not in ('total', 'others')
+    and country is not null
+    group by year, country
+    ORDER BY year asc
+""")
 
+df_country_year_map = df_country_year_map.toPandas()
 
-df.show()
+fig = px.choropleth(df_country_year_map, locations='country',
+                    color='visa_issued',
+                    hover_name='country',
+                    animation_frame='year',
+                    range_color=[100000, 100000],
+                    color_continuous_scale=px.colors.sequential.Plasma,
+                    locationmode='country names',
+                    title='Yearly visa issued by countries'
+                    )
+
+fig.write_html('output/visa_number_in_japan_year_map.html')
 
 spark.stop()
 
