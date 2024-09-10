@@ -11,6 +11,9 @@ This project contains a comprehensive solution for analyzing and visualizing vis
 
 # Architecture
 
+![flow drawio](https://github.com/user-attachments/assets/0e150f5f-2276-403e-8f42-aa3c037fda6c)
+
+
 ## System Design
 
 This project leverages a Dockerized Spark cluster on Google Cloud Platform (GCP) to handle data processing. The architecture includes:
